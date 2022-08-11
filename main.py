@@ -32,6 +32,8 @@ default_batch_size = 10
 load_data = False
 is_loaded_data = False
 draw_learning_curve = False
+# 0 is false, 1 is semi verbose, 2 is very verbose
+verbose = 1
 
 #
 # Constants
@@ -79,7 +81,7 @@ def nn(n_1=default_n_1, n_2=default_n_2, n_3=default_n_3,
     print(model.summary())
     # input("** Begin training?: %d epochs | %d batch size" % (epoch_count, batch_size))
     # go over the data 150 times, updating the weights every 10 rows
-    model.fit(in_vars, out_vars, epochs=epoch_count, batch_size=batch_size, verbose=0)
+    model.fit(in_vars, out_vars, epochs=epoch_count, batch_size=batch_size, verbose=verbose)
 
     # evaluate keras model
     accuracy = model.evaluate(in_vars, out_vars)[1]
@@ -126,3 +128,10 @@ def nn(n_1=default_n_1, n_2=default_n_2, n_3=default_n_3,
         plt.xlabel("Training Set Size"), plt.ylabel("Accuracy Score"), plt.legend(loc="best")
         plt.tight_layout()
         plt.show()
+
+
+def main():
+    nn()
+
+
+main()
